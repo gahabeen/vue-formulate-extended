@@ -1,4 +1,4 @@
-<p align="center">Vue Formulate <b>Extended</b> (Plugin)</p>
+<h2 align="center">Vue Formulate <b>Extended</b> (Plugin)</h2>
 
 <p align="center">
   <a href="https://www.npmjs.com/package/vue-formulate-extended"><img alt="npm" src="https://img.shields.io/npm/v/vue-formulate-extended"></a>
@@ -9,16 +9,14 @@
   <span>Compatible with <b>@braid/vue-formulate v2.4.1</b></span>
 </p>
 
-
 ```js
 // main.js
 import { plugin as VueFormulateExtended } from 'vue-formulate-extended'
 
 Vue.use(VueFormulate, {
-plugins: [ExtendedFormPlugin],
+  plugins: [ExtendedFormPlugin],
 })
-
-````
+```
 
 ### Features for FormulateForm (Generated Forms)
 
@@ -35,7 +33,7 @@ plugins: [ExtendedFormPlugin],
     },
   },
 }]
-````
+```
 
 2. Events propagation with `@events`
 
