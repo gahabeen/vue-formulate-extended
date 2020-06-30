@@ -1,0 +1,7 @@
+{
+  "name": "vue-formulate-extended",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "author": "Gabin Desserprit <desserprit.gabin@gmail.com>",
+  "license": "MIT"
+}
