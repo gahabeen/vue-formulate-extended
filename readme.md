@@ -9,6 +9,14 @@
   <span>Compatible with <b>@braid/vue-formulate v2.4.1</b></span>
 </p>
 
+```bash
+yarn add vue-formulate-extended
+```
+
+```bash
+npm i vue-formulate-extended
+```
+
 ```js
 // main.js
 import { plugin as VueFormulateExtended } from 'vue-formulate-extended'
