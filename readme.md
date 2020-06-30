@@ -16,6 +16,7 @@ yarn add vue-formulate-extended   @vue/composition-api @braid/vue-formulate@2.4.
 ```bash
 npm i vue-formulate-extended   @vue/composition-api @braid/vue-formulate@2.4.1
 ```
+
 `@vue/composition-api @braid/vue-formulate@2.4.1` are peer depenencies, dont forget them.
 
 ```js
@@ -33,15 +34,17 @@ Vue.use(VueFormulate, {
 
 ```js
 // schema
-[{
-  component: 'div',
-  children: 'Click me',
-  on: {
-    click(el) {
-      console.log(You clicked the following element, el)
+;[
+  {
+    component: 'div',
+    children: 'Click me',
+    on: {
+      click(el) {
+        console.log("You've clicked on the following element", el)
+      },
     },
   },
-}]
+]
 ```
 
 2. Events propagation with `@events`
@@ -61,8 +64,8 @@ Vue.use(VueFormulate, {
 ```js
 // vue - js
 const eventsHandler = (event) => {
-  if(event.name === "click" &&  event.element.classList.includes('form-buttons')){
-    console.log(You clicked the following element, event.element)
+  if (event.name === 'click' && event.element.classList.includes('form-buttons')) {
+    console.log("You've clicked on the following element", event.element)
   }
 }
 ```
@@ -88,7 +91,11 @@ const nodeHook = (el) => {
 // Dumb example which let's you dynamically wrap any div node
 const componentHook = (node) => {
   if (node.component === 'div') {
-    return h('div', { attrs: { class: 'wrapper' } }, [h('div', 'Before'), h(node.component, node.definition, node.children), h('div', 'After')])
+    return h('div', { attrs: { class: 'wrapper' } }, [
+      h('div', 'Before'), 
+      h(node.component, node.definition, node.children), 
+      h('div', 'After')
+    ])
   } else {
     return h(node.component, node.definition, node.children)
   }
