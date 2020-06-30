@@ -1,7 +1,19 @@
 {
   "name": "vue-formulate-extended",
   "version": "1.0.0",
-  "main": "src/index.js",
+  "main": "lib/index.js",
   "author": "Gabin Desserprit <desserprit.gabin@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "prepublish": "rollup -c",
+    "build": "rollup -c"
+  },
+  "peerDependencies": {
+    "@braid/vue-formulate": "2.4.1"
+  },
+  "devDependencies": {
+    "rollup": "^2.18.1",
+    "rollup-plugin-vue": "^5.1.9",
+    "vue-template-compiler": "^2.6.11"
+  }
 }

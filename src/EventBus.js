@@ -1,6 +1,7 @@
 export class EventBus {
-  store = new Map()
-  constructor() {}
+  constructor() {
+    this.store = new Map()
+  }
 
   on(type, handler) {
     const handlers = this.store.get(type)

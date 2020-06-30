@@ -1,5 +1,5 @@
-export * as FormulateSchema from './FormulateSchema'
-export * as FormulateForm from './FormulateForm.vue'
+import FormulateSchema from './FormulateSchema'
+import FormulateForm from './FormulateForm.vue'
 
 export function plugin(instance) {
   instance.extend({
