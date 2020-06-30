@@ -9,11 +9,14 @@
     "build": "rollup -c"
   },
   "peerDependencies": {
-    "@braid/vue-formulate": "2.4.1"
+    "@braid/vue-formulate": "2.4.1",
+    "@vue/composition-api": "^0.6.7"
   },
   "devDependencies": {
     "rollup": "^2.18.1",
     "rollup-plugin-vue": "^5.1.9",
     "vue-template-compiler": "^2.6.11"
+  },
+  "dependencies": {
   }
 }

@@ -10,12 +10,13 @@
 </p>
 
 ```bash
-yarn add vue-formulate-extended
+yarn add vue-formulate-extended   @vue/composition-api @braid/vue-formulate@2.4.1
 ```
 
 ```bash
-npm i vue-formulate-extended
+npm i vue-formulate-extended   @vue/composition-api @braid/vue-formulate@2.4.1
 ```
+`@vue/composition-api @braid/vue-formulate@2.4.1` are peer depenencies, dont forget them.
 
 ```js
 // main.js
