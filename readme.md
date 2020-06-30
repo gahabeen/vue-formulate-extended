@@ -1,5 +1,14 @@
 ## Extends Vue Formulate
 
+```js
+// main.js
+import { plugin as VueFormulateExtended } from 'vue-formulate-extended'
+
+Vue.use(VueFormulate, {
+  plugins: [ExtendedFormPlugin],
+})
+```
+
 ### Features for FormulateForm (Generated Forms)
 
 1. Events declaration within the `schema` using `on` listeners object
@@ -46,11 +55,12 @@ const eventsHandler = (event) => {
 ```
 
 3. Hooks on Node (`nodeHook`) and Component (`componentHook`) creation
+
 ```js
 const nodeHook = (el) => {
-  if(el.component === 'FormulateInput') {
+  if (el.component === 'FormulateInput') {
     // This example replaces the outer-class definition
-    el.definition.attrs = {...el.definition.attrs, 'outer-class':'px-6 py-3'}
+    el.definition.attrs = { ...el.definition.attrs, 'outer-class': 'px-6 py-3' }
   }
   return el
 }
@@ -59,12 +69,8 @@ const nodeHook = (el) => {
 ```js
 // Dumb example which let's you dynamically wrap any div node
 const componentHook = (node) => {
-  if(node.component === "div") {
-    return h('div', { attrs: { class: 'wrapper'}}, [
-      h('div', "Before"),
-      h(node.component, node.definition, node.children),
-      h('div', "After"),
-    ])
+  if (node.component === 'div') {
+    return h('div', { attrs: { class: 'wrapper' } }, [h('div', 'Before'), h(node.component, node.definition, node.children), h('div', 'After')])
   } else {
     return h(node.component, node.definition, node.children)
   }
@@ -72,11 +78,5 @@ const componentHook = (node) => {
 ```
 
 ```html
-<FormulateForm
-  :formulateValue="value"
-  @input="payload => $emit('input',  payload)"
-  :nodeHook="nodeHook"
-  :componentHook="componentHook"
-  :schema="schema"
-/>
+<FormulateForm :formulateValue="value" @input="payload => $emit('input',  payload)" :nodeHook="nodeHook" :componentHook="componentHook" :schema="schema" />
 ```
