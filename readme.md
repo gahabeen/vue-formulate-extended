@@ -1,23 +1,40 @@
-<h2 align="center">Vue Formulate <b>Extended</b> (Plugin)</h2>
+<h1 align="center">Vue Formulate <b>Extended</b> (Plugin)</h1>
 
 <p align="center">
   <a href="https://www.npmjs.com/package/vue-formulate-extended"><img alt="npm" src="https://img.shields.io/npm/v/vue-formulate-extended"></a>
 <a href="https://github.com/gahabeen/vue-formulate-extended"><img alt="npm" src="https://img.shields.io/badge/License-MIT-yellow.svg"></a>
 </p>
 
-<p align="center">
-  <span>Compatible with <b>@braid/vue-formulate v2.4.1</b></span>
-</p>
+## Two possible ways to use it
 
+1. Preferred: Using **extended vue-formulate components** (without overriding VueFormulate)
 ```bash
-yarn add vue-formulate-extended   @vue/composition-api @braid/vue-formulate@2.4.1
+yarn add vue-formulate-extended @vue/composition-api @braid/vue-formulate
+```
+```html
+<div>
+  <FormulateForm :schema="[...]">
+</div>
 ```
 
-```bash
-npm i vue-formulate-extended   @vue/composition-api @braid/vue-formulate@2.4.1
+```js
+// in any vue file
+import { FormulateForm } from 'vue-formulate-extended'
+
+export default {
+  components: {
+    FormulateForm
+  }
+}
 ```
 
-`@vue/composition-api @braid/vue-formulate@2.4.1` are peer depenencies, dont forget them.
+2. Easier: **As a plugin**, overriding some of VueFormulate (2.4.1) components. 
+- Easy drop in remplacement 
+- Careful you'll really need the exact 2.4.1 version.
+
+```bash
+yarn add vue-formulate-extended @vue/composition-api @braid/vue-formulate@2.4.1 # this specific version is required
+```
 
 ```js
 // main.js
@@ -28,13 +45,13 @@ Vue.use(VueFormulate, {
 })
 ```
 
-### Features for FormulateForm (Generated Forms)
+## Features for FormulateForm (Generated Forms)
 
 1. Events declaration within the `schema` using `on` listeners object
 
 ```js
 // schema
-;[
+[
   {
     component: 'div',
     children: 'Click me',
@@ -51,7 +68,7 @@ Vue.use(VueFormulate, {
 
 ```js
 // schema
-;[
+[
   {
     component: 'div',
     class: 'form-buttons',
@@ -72,7 +89,10 @@ const eventsHandler = (event) => {
 
 ```html
 <!-- vue - template -->
-<FormulateForm :schema="schema" @events="eventsHandler"></FormulateForm>
+<FormulateForm 
+  :schema="schema" 
+  @events="eventsHandler">
+</FormulateForm>
 ```
 
 3. Hooks on Node (`nodeHook`) and Component (`componentHook`) creation
@@ -103,5 +123,11 @@ const componentHook = (node) => {
 ```
 
 ```html
-<FormulateForm :formulateValue="value" @input="payload => $emit('input',  payload)" :nodeHook="nodeHook" :componentHook="componentHook" :schema="schema" />
+<FormulateForm 
+  :formulateValue="value" 
+  @input="payload => $emit('input',  payload)" 
+  :nodeHook="nodeHook" 
+  :componentHook="componentHook" 
+  :schema="schema" 
+/>
 ```
