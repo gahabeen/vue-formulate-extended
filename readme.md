@@ -28,12 +28,12 @@ export default {
 }
 ```
 
-2. Easier: **As a plugin**, overriding some of VueFormulate (2.4.1) components. 
+2. Easier: **As a plugin**, overriding some of VueFormulate (2.4.2) components. 
 - Easy drop in remplacement 
-- Careful you'll really need the exact 2.4.1 version.
+- Careful you'll really need the exact 2.4.2 version.
 
 ```bash
-yarn add vue-formulate-extended @vue/composition-api @braid/vue-formulate@2.4.1 # this specific version is required
+yarn add vue-formulate-extended @vue/composition-api @braid/vue-formulate@2.4.2 # this specific version is required
 ```
 
 ```js
