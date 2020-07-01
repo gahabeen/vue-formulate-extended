@@ -1,6 +1,7 @@
 import { EventBus } from './EventBus'
-import { createElement as h } from '@vue/composition-api'
+import { createElement as h, defineComponent } from '@vue/composition-api'
 import FormulateForm from '@braid/vue-formulate/src/FormulateForm'
+import FormulateInput from "./FormulateInput.vue"
 
 /**
  * Given an object and an index, complete an object for schema-generation.
@@ -9,15 +10,15 @@ import FormulateForm from '@braid/vue-formulate/src/FormulateForm'
  */
 function leaf(item, index, { nodeHook, eventBus, componentHook } = {}) {
   if (item && typeof item === 'object' && !Array.isArray(item)) {
-    const { children = null, component = 'FormulateInput', depth = 1, events = [], on = {}, ...attrs } = item
-    const type = component === 'FormulateInput' ? attrs.type || 'text' : ''
+    const { children = null, component = FormulateInput, depth = 1, events = [], on = {}, ...attrs } = item
+    const type = component === FormulateInput ? attrs.type || 'text' : ''
     const name = attrs.name || type || 'el'
     const key = attrs.id || `${name}-${depth}-${index}`
     const els = Array.isArray(children) ? children.map((child) => Object.assign(child, { depth: depth + 1 })) : children
     const onExtended = {
       ...on,
       ...events.reduce((onEvents, eventName) => {
-        onEvents[eventName] = function (element) {
+        onEvents[eventName] = function(element) {
           if (on[eventName]) on[eventName](payload)
           eventBus.emit('events', { name: eventName, node: { name, type, key }, element })
         }
@@ -44,8 +45,8 @@ function tree(schema, { componentHook, nodeHook, eventBus } = {}) {
   return schema
 }
 
-const FormulateSchema = {
-  functional: false,
+export const FormulateSchema = defineComponent({
+  name: 'FormulateSchema',
   props: {
     schema: FormulateForm.props.schema,
     nodeHook: {
@@ -63,6 +64,4 @@ const FormulateSchema = {
 
     return () => h('div', {}, tree(props.schema, { nodeHook: props.nodeHook, componentHook: props.componentHook }))
   },
-}
-
-export default FormulateSchema
+})
