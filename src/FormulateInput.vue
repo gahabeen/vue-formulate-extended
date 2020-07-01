@@ -1,7 +1,7 @@
 
 <script>
 import FormulateInput from "@braid/vue-formulate/src/FormulateInput";
-import { Mask } from "./MaskValue";
+import { Mask } from "./Mask";
 export default {
   extends: FormulateInput,
   watch: {

@@ -11,7 +11,7 @@
 1. Preferred: Using **extended vue-formulate components** (without overriding VueFormulate)
 
 ```bash
-yarn add vue-formulate-extended @vue/composition-api @braid/vue-formulate
+yarn add vue-formulate-extended @vue/composition-api @braid/vue-formulate imask
 ```
 
 ```html
@@ -37,7 +37,7 @@ export default {
 - Careful you'll really need the exact 2.4.2 version.
 
 ```bash
-yarn add vue-formulate-extended @vue/composition-api @braid/vue-formulate@2.4.2 # this specific version is required
+yarn add vue-formulate-extended @vue/composition-api @braid/vue-formulate@2.4.2 imask # this specific version is required
 ```
 
 ```js
