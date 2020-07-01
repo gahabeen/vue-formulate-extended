@@ -1,3 +1,3 @@
 module.exports = {
-  outputDir: 'example-build',
+  outputDir: 'docs',
 }
