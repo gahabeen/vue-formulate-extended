@@ -6,15 +6,23 @@
   "license": "MIT",
   "scripts": {
     "prepublish": "rollup -c",
-    "build": "rollup -c"
+    "build": "rollup -c",
+    "base:example": "vue-cli-service serve --port=7872 examples/base/main.js"
   },
   "peerDependencies": {
     "@braid/vue-formulate": "2.4.1",
-    "@vue/composition-api": "^0.6.7"
+    "@vue/composition-api": "^0.6.7",
+    "imask": "^6.0.5",
+    "vue": "^2.6.11"
   },
   "devDependencies": {
+    "@braid/vue-formulate": "2.4.1",
+    "@vue/cli-service": "^4.4.6",
+    "@vue/composition-api": "^0.6.7",
     "rollup": "^2.18.1",
     "rollup-plugin-vue": "^5.1.9",
+    "imask": "^6.0.5",
+    "vue": "^2.6.11",
     "vue-template-compiler": "^2.6.11"
   },
   "dependencies": {}

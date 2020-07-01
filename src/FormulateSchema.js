@@ -1,5 +1,5 @@
 import { EventBus } from './EventBus'
-import { createElement as h } from '@vue/composition-api'
+import { createElement as h, defineComponent } from '@vue/composition-api'
 import FormulateForm from '@braid/vue-formulate/src/FormulateForm'
 
 /**
@@ -9,7 +9,7 @@ import FormulateForm from '@braid/vue-formulate/src/FormulateForm'
  */
 function leaf(item, index, { nodeHook, eventBus, componentHook } = {}) {
   if (item && typeof item === 'object' && !Array.isArray(item)) {
-    const { children = null, component = 'FormulateInput', depth = 1, events = [], on = {}, ...attrs } = item
+    const { children = null, component = 'FormulateInput', depth = 1, events = [], on = {}, mask = null, ...attrs } = item
     const type = component === 'FormulateInput' ? attrs.type || 'text' : ''
     const name = attrs.name || type || 'el'
     const key = attrs.id || `${name}-${depth}-${index}`
@@ -17,14 +17,18 @@ function leaf(item, index, { nodeHook, eventBus, componentHook } = {}) {
     const onExtended = {
       ...on,
       ...events.reduce((onEvents, eventName) => {
-        onEvents[eventName] = function (element) {
+        onEvents[eventName] = function(element) {
           if (on[eventName]) on[eventName](payload)
           eventBus.emit('events', { name: eventName, node: { name, type, key }, element })
         }
         return onEvents
       }, {}),
     }
-    return nodeHook(Object.assign({ type, key, depth, component, definition: { attrs, on: onExtended }, children: tree(els, { nodeHook, eventBus, componentHook }) }))
+    const directives = {}
+    if (mask) {
+      Object.assign(directives, { vMask: mask })
+    }
+    return nodeHook(Object.assign({ type, key, depth, component, definition: { attrs, on: onExtended, directives }, children: tree(els, { nodeHook, eventBus, componentHook }) }))
   }
   return null
 }
@@ -39,13 +43,14 @@ function tree(schema, { componentHook, nodeHook, eventBus } = {}) {
     return schema.map((el, idx) => {
       const item = leaf(el, idx, { nodeHook, eventBus, componentHook })
       return componentHook(item)
+      // return <component v-is={item.component} v-bind={item.attrs} v-on={item.on} {...directives}></component>
     })
   }
   return schema
 }
 
-const FormulateSchema = {
-  functional: false,
+export const FormulateSchema = defineComponent({
+  name: 'FormulateSchema',
   props: {
     schema: FormulateForm.props.schema,
     nodeHook: {
@@ -63,6 +68,4 @@ const FormulateSchema = {
 
     return () => h('div', {}, tree(props.schema, { nodeHook: props.nodeHook, componentHook: props.componentHook }))
   },
-}
-
-export default FormulateSchema
+})
