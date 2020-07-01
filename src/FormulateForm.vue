@@ -17,13 +17,11 @@ import FormulateForm from "@braid/vue-formulate/src/FormulateForm";
 import { FormulateSchema } from "./FormulateSchema";
 
 export default {
-  ...FormulateForm,
+  extends: FormulateForm,
   components: {
-    ...FormulateForm.components,
     FormulateSchema
   },
   props: {
-    ...FormulateForm.props,
     nodeHook: FormulateSchema.props.nodeHook,
     componentHook: FormulateSchema.props.componentHook
   }

@@ -7,7 +7,8 @@
   "scripts": {
     "prepublish": "rollup -c",
     "build": "rollup -c",
-    "base:example": "vue-cli-service serve --port=7872 examples/base/main.js"
+    "example": "vue-cli-service serve --port=7872 example/main.js",
+    "example:build": "vue-cli-service build example/main.js"
   },
   "peerDependencies": {
     "@braid/vue-formulate": "2.4.1",
@@ -19,9 +20,11 @@
     "@braid/vue-formulate": "2.4.1",
     "@vue/cli-service": "^4.4.6",
     "@vue/composition-api": "^0.6.7",
+    "imask": "^6.0.5",
+    "node-sass": "^4.14.1",
     "rollup": "^2.18.1",
     "rollup-plugin-vue": "^5.1.9",
-    "imask": "^6.0.5",
+    "sass-loader": "^8.0.2",
     "vue": "^2.6.11",
     "vue-template-compiler": "^2.6.11"
   },

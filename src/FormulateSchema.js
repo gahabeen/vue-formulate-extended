@@ -1,6 +1,7 @@
 import { EventBus } from './EventBus'
 import { createElement as h, defineComponent } from '@vue/composition-api'
 import FormulateForm from '@braid/vue-formulate/src/FormulateForm'
+import FormulateInput from "./FormulateInput.vue"
 
 /**
  * Given an object and an index, complete an object for schema-generation.
@@ -9,8 +10,8 @@ import FormulateForm from '@braid/vue-formulate/src/FormulateForm'
  */
 function leaf(item, index, { nodeHook, eventBus, componentHook } = {}) {
   if (item && typeof item === 'object' && !Array.isArray(item)) {
-    const { children = null, component = 'FormulateInput', depth = 1, events = [], on = {}, mask = null, ...attrs } = item
-    const type = component === 'FormulateInput' ? attrs.type || 'text' : ''
+    const { children = null, component = FormulateInput, depth = 1, events = [], on = {}, ...attrs } = item
+    const type = component === FormulateInput ? attrs.type || 'text' : ''
     const name = attrs.name || type || 'el'
     const key = attrs.id || `${name}-${depth}-${index}`
     const els = Array.isArray(children) ? children.map((child) => Object.assign(child, { depth: depth + 1 })) : children
@@ -24,11 +25,7 @@ function leaf(item, index, { nodeHook, eventBus, componentHook } = {}) {
         return onEvents
       }, {}),
     }
-    const directives = {}
-    if (mask) {
-      Object.assign(directives, { vMask: mask })
-    }
-    return nodeHook(Object.assign({ type, key, depth, component, definition: { attrs, on: onExtended, directives }, children: tree(els, { nodeHook, eventBus, componentHook }) }))
+    return nodeHook(Object.assign({ type, key, depth, component, definition: { attrs, on: onExtended }, children: tree(els, { nodeHook, eventBus, componentHook }) }))
   }
   return null
 }
@@ -43,7 +40,6 @@ function tree(schema, { componentHook, nodeHook, eventBus } = {}) {
     return schema.map((el, idx) => {
       const item = leaf(el, idx, { nodeHook, eventBus, componentHook })
       return componentHook(item)
-      // return <component v-is={item.component} v-bind={item.attrs} v-on={item.on} {...directives}></component>
     })
   }
   return schema
