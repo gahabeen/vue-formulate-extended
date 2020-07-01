@@ -1,4 +1,5 @@
 <h1 align="center">Vue Formulate <b>Extended</b> (Plugin)</h1>
+<p align="center"><b>Consider this repo as work in progress. Use it at your own risk.</b></p>
 
 <p align="center">
   <a href="https://www.npmjs.com/package/vue-formulate-extended"><img alt="npm" src="https://img.shields.io/npm/v/vue-formulate-extended"></a>
@@ -8,9 +9,11 @@
 ## Two possible ways to use it
 
 1. Preferred: Using **extended vue-formulate components** (without overriding VueFormulate)
+
 ```bash
 yarn add vue-formulate-extended @vue/composition-api @braid/vue-formulate
 ```
+
 ```html
 <div>
   <FormulateForm :schema="[...]">
@@ -23,13 +26,14 @@ import { FormulateForm } from 'vue-formulate-extended'
 
 export default {
   components: {
-    FormulateForm
-  }
+    FormulateForm,
+  },
 }
 ```
 
-2. Easier: **As a plugin**, overriding some of VueFormulate (2.4.2) components. 
-- Easy drop in remplacement 
+2. Easier: **As a plugin**, overriding some of VueFormulate (2.4.2) components.
+
+- Easy drop in remplacement
 - Careful you'll really need the exact 2.4.2 version.
 
 ```bash
@@ -47,11 +51,12 @@ Vue.use(VueFormulate, {
 
 ## Features for FormulateForm (Generated Forms)
 
+<div id="feature-1"></div>
 1. Events declaration within the `schema` using `on` listeners object
 
 ```js
 // schema
-[
+;[
   {
     component: 'div',
     children: 'Click me',
@@ -64,11 +69,12 @@ Vue.use(VueFormulate, {
 ]
 ```
 
+<div id="feature-2"></div>
 2. Events propagation with `@events`
 
 ```js
 // schema
-[
+;[
   {
     component: 'div',
     class: 'form-buttons',
@@ -88,14 +94,18 @@ const eventsHandler = (event) => {
 ```
 
 ```html
-<!-- vue - template -->
-<FormulateForm 
-  :schema="schema" 
-  @events="eventsHandler">
-</FormulateForm>
+<FormulateForm :schema="schema" @events="eventsHandler"> </FormulateForm>
+
+<script>
+  import { FormulateForm } from 'vue-formulate-extended'
+  export default {
+    components: { FormulateForm },
+  }
+</script>
 ```
 
-3. Hooks on Node (`nodeHook`) and Component (`componentHook`) creation
+<div id="feature-3"></div>
+1. Hooks on Node (`nodeHook`) and Component (`componentHook`) creation
 
 ```js
 const nodeHook = (el) => {
@@ -111,11 +121,7 @@ const nodeHook = (el) => {
 // Dumb example which let's you dynamically wrap any div node
 const componentHook = (node) => {
   if (node.component === 'div') {
-    return h('div', { attrs: { class: 'wrapper' } }, [
-      h('div', 'Before'), 
-      h(node.component, node.definition, node.children), 
-      h('div', 'After')
-    ])
+    return h('div', { attrs: { class: 'wrapper' } }, [h('div', 'Before'), h(node.component, node.definition, node.children), h('div', 'After')])
   } else {
     return h(node.component, node.definition, node.children)
   }
@@ -123,11 +129,60 @@ const componentHook = (node) => {
 ```
 
 ```html
-<FormulateForm 
-  :formulateValue="value" 
-  @input="payload => $emit('input',  payload)" 
-  :nodeHook="nodeHook" 
-  :componentHook="componentHook" 
-  :schema="schema" 
-/>
+<FormulateForm :formulateValue="value" @input="payload => $emit('input',  payload)" :nodeHook="nodeHook" :componentHook="componentHook" :schema="schema" />
+
+<script>
+  import { FormulateForm } from 'vue-formulate-extended'
+  export default {
+    components: { FormulateForm },
+  }
+</script>
+```
+
+<div id="feature-4"></div>
+1. Use a Mask on inputs generated in a form (thanks to `imask`)
+
+```html
+<FormulateForm :formulateValue="value" @input="payload => $emit('input',  payload)" :schema="schema" />
+
+<script>
+  import { FormulateForm } from 'vue-formulate-extended'
+  const frenchPhoneMask = '+33 \\02 00 00 00 00 00'
+  const emailMask = /^[a-zA-Z0-9_\-\.]*@?[a-zA-Z0-9_\-\.]*\.?[a-zA-Z]{0,5}$/
+
+  export default {
+    components: { FormulateForm },
+
+    data: () => ({
+      values: null,
+      schema: [
+        {
+          name: 'phone',
+          label: 'Phone',
+          type: 'text',
+          mask: frenchPhoneMask,
+        },
+        {
+          name: 'email',
+          label: 'Email',
+          type: 'text',
+          mask: emailMask,
+        },
+        {
+          name: 'emailOrPhone',
+          label: 'Email or phone',
+          type: 'text',
+          mask: [
+            {
+              mask: frenchPhoneMask,
+            },
+            {
+              mask: emailMask,
+            },
+          ],
+        },
+      ],
+    }),
+  }
+</script>
 ```
