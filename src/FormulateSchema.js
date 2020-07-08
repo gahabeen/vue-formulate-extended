@@ -1,14 +1,9 @@
 import { EventBus } from './EventBus'
-import { createElement as h, defineComponent } from '@vue/composition-api'
+import { createElement, defineComponent } from '@vue/composition-api'
 import FormulateForm from '@braid/vue-formulate/src/FormulateForm'
-import FormulateInput from "./FormulateInput.vue"
+import FormulateInput from './FormulateInput.vue'
 
-/**
- * Given an object and an index, complete an object for schema-generation.
- * @param {object} item
- * @param {int} index
- */
-function leaf(item, index, { nodeHook, eventBus, componentHook } = {}) {
+function leaf(item, index, { nodeHook, eventBus, componentHook, h } = {}) {
   if (item && typeof item === 'object' && !Array.isArray(item)) {
     const { children = null, component = FormulateInput, depth = 1, events = [], on = {}, ...attrs } = item
     const type = component === FormulateInput ? attrs.type || 'text' : ''
@@ -25,21 +20,16 @@ function leaf(item, index, { nodeHook, eventBus, componentHook } = {}) {
         return onEvents
       }, {}),
     }
-    return nodeHook(Object.assign({ type, key, depth, component, definition: { attrs, on: onExtended }, children: tree(els, { nodeHook, eventBus, componentHook }) }))
+    return nodeHook(Object.assign({ type, key, depth, component, definition: { attrs, on: onExtended }, children: tree(els, { nodeHook, eventBus, componentHook, h }) }))
   }
   return null
 }
 
-/**
- * Recursive function to create vNodes from a schema.
- * @param {Functon} h createElement
- * @param {Array|string} schema
- */
-function tree(schema, { componentHook, nodeHook, eventBus } = {}) {
+function tree(schema, { componentHook, nodeHook, eventBus, h } = {}) {
   if (Array.isArray(schema)) {
     return schema.map((el, idx) => {
-      const item = leaf(el, idx, { nodeHook, eventBus, componentHook })
-      return componentHook(item)
+      const item = leaf(el, idx, { nodeHook, eventBus, componentHook, h })
+      return typeof componentHook === 'function' ? componentHook(item) : h(item.component, item.definition, item.children)
     })
   }
   return schema
@@ -62,6 +52,6 @@ export const FormulateSchema = defineComponent({
     const eventBus = new EventBus()
     eventBus.on('events', (payload) => emit('events', payload))
 
-    return () => h('div', {}, tree(props.schema, { nodeHook: props.nodeHook, componentHook: props.componentHook }))
+    return () => createElement('div', {}, tree(props.schema, { nodeHook: props.nodeHook, componentHook: props.componentHook, eventBus, h: createElement }))
   },
 })

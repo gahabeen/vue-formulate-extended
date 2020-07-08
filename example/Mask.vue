@@ -9,12 +9,12 @@
 </template>
 
 <script>
-import { FormulateForm } from "../src";
+// import { FormulateForm } from "../src";
 const frenchPhoneMask = "+33 \\02 00 00 00 00 00";
 const emailMask = /^[a-zA-Z0-9_\-\.]*@?[a-zA-Z0-9_\-\.]*\.?[a-zA-Z]{0,5}$/;
 export default {
   components: {
-    FormulateForm
+    // FormulateForm
   },
   data: () => ({
     values: null,

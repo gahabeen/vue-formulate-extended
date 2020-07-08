@@ -11,11 +11,11 @@
 <script>
 import { reactive, watch, ref } from "@vue/composition-api";
 // import { FormulateForm } from "../../lib";
-import { FormulateForm } from "../src";
-import { MaskValue } from "../src/MaskValue.js";
+// import { FormulateForm } from "../src";
+import { Mask } from "../src/Mask.js";
 export default {
   components: {
-    FormulateForm
+    // FormulateForm
   },
   data: () => ({
     values: null,
