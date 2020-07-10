@@ -17,7 +17,7 @@ export class Hooks {
   }
 
   addHook(hook) {
-    if (this.isProperHook(hook)) {
+    if (this.isProperHook(hook) && this.isNewHook(hook)) {
       this.hooks.push(hook)
     }
     return this
@@ -33,11 +33,15 @@ export class Hooks {
     return this
   }
 
+  // not chainables
+
   isProperHook(hook) {
     return hook && typeof hook === 'object' && typeof hook.handler === 'function'
   }
 
-  // not chainables
+  isNewHook(hook) {
+    return this.hooks.findIndex((h) => h === hook) < 0
+  }
 
   getHooks() {
     return this.hooks
@@ -55,7 +59,12 @@ export class Hooks {
     }
   }
 
-  handler() {
-    return (value, options) => this.apply(value, options)
+  asSingleHook() {
+    const self = this
+    return {
+      handler(value, options) {
+        return self.apply(value, options)
+      },
+    }
   }
 }

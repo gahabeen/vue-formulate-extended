@@ -9,14 +9,21 @@ export default {
   extends: FormulateInput,
   props: {
     modelHook: {
-      type: Function,
+      type: [Function, Object, Array],
       default: null
     }
   },
   watch: {
     "context.model": {
       handler(newModel, oldModel) {
-        const _modelHook = new Hooks().addHook(this.modelHook);
+        const _modelHook = new Hooks();
+        if (Array.isArray(this.modelHook)) {
+          this.modelHook.map(m => _modelHook.addHook(m));
+        } else if (typeof this.modelHook === "function") {
+          _modelHook.addHook({ handler: this.modelHook });
+        } else {
+          _modelHook.addHook(this.modelHook);
+        }
 
         if ("vfe-number" in this.context.attributes) {
           numberField.hooks.model.map(m => _modelHook.addHook(m));

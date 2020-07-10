@@ -15,7 +15,7 @@ function leaf(item, index, { hooks, h, state } = {}) {
     const _modelHook = new Hooks()
       .setHooks(hooks.model)
       .addHook(modelHook)
-      .handler()
+      .asSingleHook()
 
     const node = Object.assign({ type, key, depth, component, definition: { attrs: { ...attrs, modelHook: _modelHook } }, children: tree(els, { hooks, h, state }) })
 
