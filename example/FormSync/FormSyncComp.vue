@@ -5,7 +5,8 @@
         ref="form0"
         style="margin-bottom: 2rem;"
         v-model="model"
-        :schema="[{ type: 'select', name: 'first', options}]"
+        :schema="[{ type: 'select', name: 'first', events: ['input'], options}]"
+        @events="onEvents"
       />
       <div style="margin-bottom: 2rem;" v-if="$refs['form0']">
         <p>Proxy:</p>
@@ -50,29 +51,20 @@
 
 <script>
 import { reactive, ref, watch } from "@vue/composition-api";
-import { useModelSync } from "./../../src/composables/modelSync.js";
 export default {
   layout: "default",
   name: "Test",
   props: ["value"],
   setup(props, { emit, set }) {
-    // const { models, onDifference } = useModelSync("value", {
-    //   iterations: 3,
-    //   props,
-    //   emit
-    // });
     const options = reactive({ 1: "AAAA", 2: "BBBB" });
-    // const onFieldChanged = index => change => {
-    //   console.log("change", index, change.node.name, change.value);
-    //   onDifference(index, change.node.name, change.value);
-    // };
-
     const model = ref(Object.assign({}, props.value));
     watch(() => model.value, (newModel, oldModel) => {
       emit("input", newModel)
     })
 
-    return { model, options };
+    const onEvents = (payload) => console.log(payload);
+
+    return { model, options, onEvents };
   }
 };
 </script>

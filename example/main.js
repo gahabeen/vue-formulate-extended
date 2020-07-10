@@ -1,13 +1,21 @@
 import Vue from 'vue'
 import VueCompositionAPI from '@vue/composition-api'
 import VueFormulate from '@braid/vue-formulate'
-import { plugin } from '../src'
+import VueFormulateExtended from '../src'
 Vue.config.productionTip = false
 
-Vue.use(VueFormulate, {
-  plugins: [plugin],
-})
 Vue.use(VueCompositionAPI)
+
+Vue.use(VueFormulate, {
+  plugins: [
+    VueFormulateExtended({
+      features: {
+        formEvents: true,
+        textMask: true,
+      },
+    }),
+  ],
+})
 
 import '@braid/vue-formulate/themes/snow/snow.scss'
 

@@ -2,7 +2,9 @@
   <div style="margin: 20px auto;">
     <div>
       <div style="margin-bottom:20px;">Basic</div>
-      <FormulateForm :formulateValue="values" @input="v => values = v" :schema="schema" />
+      <FormulateForm v-model="values" :schema="schema" />
+      <FormulateInput type="number" v-model="values.age" vfe-number />
+      <FormulateInput type="text" v-model="values.phone" vfe-mask="+7 (000) 000-00-00" />
       {{values}}
     </div>
   </div>
@@ -12,14 +14,20 @@
 import { reactive, watch, ref } from "@vue/composition-api";
 // import { FormulateForm } from "../../lib";
 // import { FormulateForm } from "../src";
-import { Mask } from "../src/Mask.js";
 export default {
   components: {
     // FormulateForm
   },
   data: () => ({
-    values: null,
+    values: {
+      age: 7
+    },
     schema: [
+      {
+        name: "age",
+        label: "Age",
+        type: "number"
+      },
       {
         name: "phone",
         label: "Phone",

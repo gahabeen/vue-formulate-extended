@@ -3,9 +3,8 @@
     <FormulateSchema
       v-if="schema"
       :schema="schema"
-      :nodeHook="nodeHook"
-      :componentHook="componentHook"
-      @events="$emit('events', payload)"
+      :hooks="cleanedHooks"
+      @events="$emit('events', $event)"
     />
     <FormulateErrors v-if="!hasFormErrorObservers" :context="formContext" />
     <slot />
@@ -15,7 +14,11 @@
 <script>
 import { shallowEqualObjects } from "@braid/vue-formulate/src/libs/utils";
 import FormulateForm from "@braid/vue-formulate/src/FormulateForm";
-import { FormulateSchema } from "./FormulateSchema";
+import Formulate from "@braid/vue-formulate/src/Formulate";
+
+import { Hooks } from "../libs/hooks";
+import hooksProp from "../composables/hooksProp";
+import FormulateSchema from "./FormulateSchema";
 
 export default {
   extends: FormulateForm,
@@ -23,21 +26,19 @@ export default {
     FormulateSchema
   },
   props: {
-    nodeHook: FormulateSchema.props.nodeHook,
-    componentHook: {
-      type: Function,
-      default: null
+    hooks: hooksProp
+  },
+  computed: {
+    cleanedHooks() {
+      const _hooks = hooksProp.default();
+
+      Object.keys(_hooks).forEach(key => {
+        _hooks[key] = new Hooks().parse(this.hooks[key]).getHooks();
+      });
+
+      return Formulate.merge(this.$formulate.options.hooks || {}, _hooks);
     }
   },
-  // methods: {
-  //   onEvents(payload) {
-  //     if (payload.name === "fieldChanged") {
-  //       this.$emit("fieldChanged", payload);
-  //     } else {
-  //       this.$emit("events", payload);
-  //     }
-  //   }
-  // },
   watch: {
     formulateValue: {
       handler(values) {
