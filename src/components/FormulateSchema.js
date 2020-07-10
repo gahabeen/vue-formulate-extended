@@ -1,5 +1,5 @@
 import { createElement, defineComponent } from '@vue/composition-api'
-import FormulateForm from '@braid/vue-formulate/src/FormulateForm.vue'
+import Formulate from '@braid/vue-formulate'
 
 import { Hooks } from '../libs/hooks'
 import hooksProp from '../composables/hooksProp'
@@ -43,7 +43,7 @@ function tree(schema, { hooks, h, state } = {}) {
 export default defineComponent({
   name: 'FormulateSchema',
   props: {
-    schema: FormulateForm.props.schema,
+    schema: Formulate.defaults.components.FormulateForm.props.schema,
     hooks: hooksProp,
   },
   setup(props, { emit }) {

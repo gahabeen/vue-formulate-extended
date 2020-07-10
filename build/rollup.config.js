@@ -15,7 +15,6 @@ export default {
       sourcemap: false,
     },
   ],
-  external: [],
   plugins: [
     commonjs(),
     autoExternal(),
@@ -27,7 +26,7 @@ export default {
       transforms: {
         forOf: false,
       },
-    }), // Transpile to ES5,
+    }),
     terser(),
   ],
 }

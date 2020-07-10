@@ -1,9 +1,9 @@
 
 <script>
 import { Hooks } from "../libs/hooks";
-import FormulateInput from "@braid/vue-formulate/src/FormulateInput.vue";
+import Formulate from "@braid/vue-formulate";
 export default {
-  extends: FormulateInput,
+  extends: Formulate.defaults.components.FormulateInput,
   props: {
     modelHook: {
       type: [Function, Object, Array],

@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueCompositionAPI from '@vue/composition-api'
 import VueFormulate from '@braid/vue-formulate'
-import VueFormulateExtended from '../src'
+import VueFormulateExtended from '../lib/vue-formulate-extended.umd'
 Vue.config.productionTip = false
 
 Vue.use(VueCompositionAPI)
