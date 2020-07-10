@@ -39,17 +39,22 @@ Vue.use(VueFormulate, {
 (Feel free to check out how I extend the Form, Input and Schema components in /components)
 
 ## Activable features
-1. Events propagation from schema inputs with `events: []` in **FormulateForm** up to the top via `@events`       
-  [Check a live example](https://codesandbox.io/s/events-propagation-b2vsf?file=/src/components/Sandbox.vue)  
-  [Check the tests](https://github.com/gahabeen/vue-formulate-extended/tree/master/test/unit/features/FormEvents.spec.js)
 
-2. Text mask on a **FormulateInput** with `vfe-mask` attribute (works in a **FormulateForm** schema too)  
-  [Check a live example](https://codesandbox.io/s/text-mask-04dh5?file=/src/components/Sandbox.vue)  
-  [Check the tests](https://github.com/gahabeen/vue-formulate-extended/tree/master/test/unit/features/TextMask.spec.js)
+### Events propagation
+Events propagation from schema inputs with `events: []` in **FormulateForm** up to the top via `@events`       
+  <a href="https://codesandbox.io/s/events-propagation-b2vsf?file=/src/components/Sandbox.vue" target="_blank">Check a live example</a>  
+  <a href="https://github.com/gahabeen/vue-formulate-extended/tree/master/test/unit/features/FormEvents.spec.js" target="_blank">Check the tests</a>
 
-1. Force number value on a **FormulateInput** number type with `vfe-number` attribute (works in a **FormulateForm** schema too)  
-  [Check a live example](https://codesandbox.io/s/enforce-number-0ctzj?file=/src/components/Sandbox.vue)  
-  [Check tests](https://github.com/gahabeen/vue-formulate-extended/tree/master/test/unit/features/EnforceNumber.spec.js)
+
+### Text mask
+Text mask on a **FormulateInput** with `vfe-mask` attribute (works in a **FormulateForm** schema too)  
+  <a href="https://codesandbox.io/s/text-mask-04dh5?file=/src/components/Sandbox.vue" target="_blank">Check a live example</a>   
+  <a href="https://github.com/gahabeen/vue-formulate-extended/tree/master/test/unit/features/TextMask.spec.js" target="_blank">Check the tests</a>  
+
+### Enforce Number
+Force number value on a **FormulateInput** number type with `vfe-number` attribute (works in a **FormulateForm** schema too)  
+  <a href="https://codesandbox.io/s/enforce-number-0ctzj?file=/src/components/Sandbox.vue" target="_blank">Check a live example</a>   
+  <a href="https://github.com/gahabeen/vue-formulate-extended/tree/master/test/unit/features/EnforceNumber.spec.js" target="_blank">Check the tests</a>  
 
 ## Q&A / Issues
 Feel free to open an issue for any question, request or bug.
