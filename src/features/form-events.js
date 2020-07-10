@@ -20,9 +20,9 @@ export default {
           node.definition.on = {
             ...on,
             ...events.reduce((onEvents, eventName) => {
-              onEvents[eventName] = function(element) {
-                if (on[eventName]) on[eventName](element)
-                state.eventBus.emit('events', { name: eventName, node: { name: node.name, type: node.type, key: node.key }, element })
+              onEvents[eventName] = function(payload) {
+                if (on[eventName]) on[eventName](payload)
+                state.eventBus.emit('events', { eventName, name: node.name, type: node.type, key: node.key, payload })
               }
               return onEvents
             }, {}),

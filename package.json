@@ -1,15 +1,22 @@
 {
   "name": "vue-formulate-extended",
   "version": "1.0.19",
-  "main": "lib/index.js",
+  "main": "lib/formulate.umd.js",
+  "module": "lib/formulate.esm.js",
+  "unpkg": "lib/formulate.min.js",
   "author": "Gabin Desserprit <desserprit.gabin@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "prepublish": "rollup -c",
-    "build": "rollup -c",
     "dev": "rollup -c --watch",
     "example": "vue-cli-service serve --port=7872 example/main.js",
-    "example:build": "vue-cli-service build example/main.js"
+    "example:build": "vue-cli-service build example/main.js",
+    "prepublish": "npm run build",
+    "build": "npm run build:esm & npm run build:umd & npm run build:iife",
+    "build:esm": "rollup --config build/rollup.config.js --format es --file lib/vue-formulate-extended.esm.js",
+    "build:umd": "rollup --config build/rollup.config.js --format umd --file lib/vue-formulate-extended.umd.js",
+    "build:iife": "rollup --config build/rollup.iife.config.js --format iife --file lib/vue-formulate-extended.min.js",
+    "test:unit": "vue-cli-service test:unit --coverage",
+    "build:size": "gzip -c lib/vf-extended.esm.js | wc -c"
   },
   "peerDependencies": {
     "@braid/vue-formulate": "2.4.2",
@@ -19,15 +26,24 @@
   },
   "devDependencies": {
     "@braid/vue-formulate": "2.4.1",
+    "@rollup/plugin-buble": "^0.21.3",
+    "@rollup/plugin-commonjs": "^13.0.0",
+    "@rollup/plugin-node-resolve": "^8.1.0",
+    "@vue/cli-plugin-babel": "~4.4.0",
+    "@vue/cli-plugin-unit-jest": "~4.4.0",
     "@vue/cli-service": "^4.4.6",
     "@vue/composition-api": "^0.6.7",
+    "@vue/test-utils": "^1.0.3",
+    "flush-promises": "^1.0.2",
     "imask": "^6.0.5",
     "node-sass": "^4.14.1",
     "rollup": "^2.18.1",
+    "rollup-plugin-auto-external": "^2.0.0",
+    "rollup-plugin-internal": "^1.0.4",
+    "rollup-plugin-terser": "^6.1.0",
     "rollup-plugin-vue": "^5.1.9",
     "sass-loader": "^8.0.2",
     "vue": "^2.6.11",
     "vue-template-compiler": "^2.6.11"
-  },
-  "dependencies": {}
+  }
 }

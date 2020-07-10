@@ -4,12 +4,12 @@ import FormulateInput from './components/FormulateInput.vue'
 
 import formEvents from './features/form-events'
 import textMask from './features/text-mask'
-import numberField from './features/number-field'
+import enforceNumber from './features/enforce-number'
 
 import Formulate from '@braid/vue-formulate/src/Formulate'
 
 export const components = { FormulateForm, FormulateSchema, FormulateInput }
-export const features = { formEvents, textMask, numberField }
+export const features = { formEvents, textMask, enforceNumber }
 
 export default function(options = {}) {
   let extended = {
@@ -18,7 +18,7 @@ export default function(options = {}) {
         features: {
           formEvents: true,
           textMask: false,
-          numberField: false,
+          enforceNumber: false,
         },
         override: {
           FormulateForm: true,
@@ -51,8 +51,8 @@ export default function(options = {}) {
       instance.extend(textMask)
     }
 
-    if (extended.options.features.numberField) {
-      instance.extend(numberField)
+    if (extended.options.features.enforceNumber) {
+      instance.extend(enforceNumber)
     }
   }
 }

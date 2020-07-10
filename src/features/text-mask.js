@@ -5,9 +5,9 @@ export default {
     model: [
       {
         handler(value, { context }) {
-          const hasMask = 'mask' in context.attributes || 'vfe-mask' in context.attributes
+          const hasMask = 'vfe-mask' in context.attributes || 'vfeMask' in context.attributes
           if (context.classification === 'text' && hasMask) {
-            const options = context.attributes.mask || context.attributes['vfe-mask']
+            const options = context.attributes['vfe-mask'] || context.attributes.vfeMask
             const maskOptions = typeof options === 'object' && options.mask ? options : { mask: options }
             const masked = IMask.createMask(maskOptions)
             const resolved = masked.resolve(value)

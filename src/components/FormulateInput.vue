@@ -1,10 +1,7 @@
 
 <script>
-import textMask from "../features/text-mask";
-import numberField from "../features/number-field";
-
 import { Hooks } from "../libs/hooks";
-import FormulateInput from "@braid/vue-formulate/src/FormulateInput";
+import FormulateInput from "@braid/vue-formulate/src/FormulateInput.vue";
 export default {
   extends: FormulateInput,
   props: {
@@ -25,13 +22,11 @@ export default {
           _modelHook.addHook(this.modelHook);
         }
 
-        if ("vfe-number" in this.context.attributes) {
-          numberField.hooks.model.map(m => _modelHook.addHook(m));
-        }
-
-        if ("vfe-mask" in this.context.attributes) {
-          textMask.hooks.model.map(m => _modelHook.addHook(m));
-        }
+        const defaultModelHooks =
+          this.$formulate.options.hooks && this.$formulate.options.hooks.model
+            ? this.$formulate.options.hooks.model
+            : [];
+        defaultModelHooks.map(h => _modelHook.addHook(h));
 
         if (newModel !== oldModel) {
           this.context.model = _modelHook.apply(newModel, {

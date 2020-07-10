@@ -1,5 +1,5 @@
 import { createElement, defineComponent } from '@vue/composition-api'
-import FormulateForm from '@braid/vue-formulate/src/FormulateForm'
+import FormulateForm from '@braid/vue-formulate/src/FormulateForm.vue'
 
 import { Hooks } from '../libs/hooks'
 import hooksProp from '../composables/hooksProp'

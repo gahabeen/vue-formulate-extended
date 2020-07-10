@@ -12,13 +12,13 @@
 </template>
 
 <script>
-import { shallowEqualObjects } from "@braid/vue-formulate/src/libs/utils";
-import FormulateForm from "@braid/vue-formulate/src/FormulateForm";
-import Formulate from "@braid/vue-formulate/src/Formulate";
+import { shallowEqualObjects } from "@braid/vue-formulate/src/libs/utils.js";
+import FormulateForm from "@braid/vue-formulate/src/FormulateForm.vue";
+import Formulate from "@braid/vue-formulate/src/Formulate.js";
 
-import { Hooks } from "../libs/hooks";
-import hooksProp from "../composables/hooksProp";
-import FormulateSchema from "./FormulateSchema";
+import { Hooks } from "../libs/hooks.js";
+import hooksProp from "../composables/hooksProp.js";
+import FormulateSchema from "./FormulateSchema.js";
 
 export default {
   extends: FormulateForm,
