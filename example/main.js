@@ -12,6 +12,7 @@ Vue.use(VueFormulate, {
       features: {
         formEvents: true,
         textMask: true,
+        numberField: true,
       },
     }),
   ],

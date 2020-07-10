@@ -2,7 +2,7 @@
   <div style="margin: 20px auto;">
     <div>
       <div style="margin-bottom:20px;">Mask</div>
-      <FormulateForm :formulateValue="values" @input="v => values = v" :schema="schema" />
+      <FormulateForm v-model="values" :schema="schema" />
       <div style="margin-top: 20px;">{{values}}</div>
     </div>
   </div>
