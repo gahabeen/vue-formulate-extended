@@ -16,9 +16,9 @@ export default function(options = {}) {
     options: Formulate.merge(
       {
         features: {
-          textMask: true,
           formEvents: true,
-          numberField: true,
+          textMask: false,
+          numberField: false,
         },
         override: {
           FormulateForm: true,

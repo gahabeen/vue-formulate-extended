@@ -1,55 +1,57 @@
 <h1 align="center">Vue Formulate <b>Extended</b> (Plugin)</h1>
-<p align="center"><b>Consider this repo as work in progress. Use it at your own risk.</b></p>
+<h3 align="center">Consider this repo as experimental. Use it at your own risk.</h3>
+<p align="center">Breaking changes will happen, make sure to come back here for how-to use it.</p>
 
 <p align="center">
   <a href="https://www.npmjs.com/package/vue-formulate-extended"><img alt="npm" src="https://img.shields.io/npm/v/vue-formulate-extended"></a>
 <a href="https://github.com/gahabeen/vue-formulate-extended"><img alt="npm" src="https://img.shields.io/badge/License-MIT-yellow.svg"></a>
 </p>
 
-## Two possible ways to use it
-
-1. Preferred: Using **extended vue-formulate components** (without overriding VueFormulate)
+## How-to
 
 ```bash
-yarn add vue-formulate-extended @vue/composition-api @braid/vue-formulate imask
-```
+yarn add vue-formulate-extended
 
-```html
-<div>
-  <FormulateForm :schema="[...]">
-</div>
-```
+# don't forget to have the peer dependencies installed
+yarn add @vue/composition-api @braid/vue-formulate@2.4.2
 
-```js
-// in any vue file
-import { FormulateForm } from 'vue-formulate-extended'
-
-export default {
-  components: {
-    FormulateForm,
-  },
-}
-```
-
-2. Easier: **As a plugin**, overriding some of VueFormulate (2.4.2) components.
-
-- Easy drop in remplacement
-- Careful you'll really need the exact 2.4.2 version.
-
-```bash
-yarn add vue-formulate-extended @vue/composition-api @braid/vue-formulate@2.4.2 imask # this specific version is required
+# install only if you want to use text-mask feature
+yarnd add imask
 ```
 
 ```js
 // main.js
-import { plugin as VueFormulateExtended } from 'vue-formulate-extended'
+import VueFormulateExtended from 'vue-formulate-extended'
 
 Vue.use(VueFormulate, {
-  plugins: [ExtendedFormPlugin],
+  plugins: [
+    VueFormulateExtended({
+      features: {
+        formEvents: true, // by-default
+        textMask: false, // by-default
+        numberField: false, // by-default
+      },
+    }),
+  ],
 })
 ```
 
-## Features for FormulateForm (Generated Forms)
+## Things added on top of Vue-Formulate
+1. Fix for FormulateForm v-model (see [https://github.com/wearebraid/vue-formulate/pull/164](https://github.com/wearebraid/vue-formulate/pull/164))
+2. Hooks strategy to easily add features (see /features folder for examples)
+
+(Feel free to check out how I extend the Form, Input and Schema components in /components)
+
+## Features
+1. Events propagation from inputs in **FormulateForm** up to the top via @events ([check live example]())
+2. Text mask on an **FormulateInput** (with `vfe-mask` attribute) or set within a schema for **FormulateForm** ([check live example]())
+3. Force number value on number inputs (with `vfe-number` attribute) ([check live example]())
+
+## Q&A / Issues
+Feel free to open an issue for any question, request or bug.
+
+## Tests
+They'll come if this lib materializes into a stable plugin I wanna maintain.
 
 <div id="feature-1"></div>
 1. Events declaration within the `schema` using `on` listeners object
