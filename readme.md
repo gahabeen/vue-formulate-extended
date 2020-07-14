@@ -9,7 +9,7 @@
 yarn add vue-formulate-extended
 
 # don't forget to have the peer dependencies installed
-yarn add @vue/composition-api @braid/vue-formulate@2.4.2
+yarn add @braid/vue-formulate@2.4.2
 
 # install only if you want to use text-mask feature
 yarnd add imask

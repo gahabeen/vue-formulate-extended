@@ -1,4 +1,3 @@
-import { createElement, defineComponent } from '@vue/composition-api'
 import Formulate from '@braid/vue-formulate'
 
 import { Hooks } from '../libs/hooks'
@@ -40,17 +39,27 @@ function tree(schema, { hooks, h, state } = {}) {
   return schema
 }
 
-export default defineComponent({
+export default {
+  functional: false,
   name: 'FormulateSchema',
   props: {
     schema: Formulate.defaults.components.FormulateForm.props.schema,
     hooks: hooksProp,
   },
-  setup(props, { emit }) {
-    const schemaHooks = new Hooks().setHooks(props.hooks.schema)
-    const schemaOptionsHooks = new Hooks().setHooks(props.hooks.schemaOptions).setDefault((x) => x)
-    return () => {
-      return schemaHooks.apply(createElement('div', {}, tree(props.schema, schemaOptionsHooks.apply({ hooks: props.hooks, h: createElement, state: {} }, { emit, props }))), { emit, props })
-    }
+  data: () => ({
+    schemaHooks: null,
+    schemaOptionsHooks: null,
+  }),
+  methods: {
+    emit(event, payload) {
+      this.$emit(event, payload)
+    },
   },
-})
+  beforeMount() {
+    this.schemaHooks = new Hooks().setHooks(this.hooks.schema)
+    this.schemaOptionsHooks = new Hooks().setHooks(this.hooks.schemaOptions).setDefault((x) => x)
+  },
+  render(createElement) {
+    return this.schemaHooks.apply(createElement('div', {}, tree(this.schema, this.schemaOptionsHooks.apply({ hooks: this.hooks, h: createElement, state: {} }, { emit: this.emit, props: this.$props }))), { emit: this.emit, props: this.$props })
+  },
+}

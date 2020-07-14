@@ -22,9 +22,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">91.3% </span>
+                <span class="strong">91.67% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>21/23</span>
+                <span class='fraction'>22/24</span>
             </div>
         
             
@@ -36,16 +36,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">88.89% </span>
+                <span class="strong">90.91% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>8/9</span>
+                <span class='fraction'>10/11</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">95.24% </span>
+                <span class="strong">95.45% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>20/21</span>
+                <span class='fraction'>21/22</span>
             </div>
         
             
@@ -112,8 +112,16 @@
 <a name='L54'></a><a href='#L54'>54</a>
 <a name='L55'></a><a href='#L55'>55</a>
 <a name='L56'></a><a href='#L56'>56</a>
-<a name='L57'></a><a href='#L57'>57</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L57'></a><a href='#L57'>57</a>
+<a name='L58'></a><a href='#L58'>58</a>
+<a name='L59'></a><a href='#L59'>59</a>
+<a name='L60'></a><a href='#L60'>60</a>
+<a name='L61'></a><a href='#L61'>61</a>
+<a name='L62'></a><a href='#L62'>62</a>
+<a name='L63'></a><a href='#L63'>63</a>
+<a name='L64'></a><a href='#L64'>64</a>
+<a name='L65'></a><a href='#L65'>65</a>
+<a name='L66'></a><a href='#L66'>66</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -162,14 +170,23 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">12x</span>
-<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">12x</span>
 <span class="cline-any cline-yes">12x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { createElement, defineComponent } from '@vue/composition-api'
-import Formulate from '@braid/vue-formulate'
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import Formulate from '@braid/vue-formulate'
 &nbsp;
 import { Hooks } from '../libs/hooks'
 import hooksProp from '../composables/hooksProp'
@@ -210,20 +227,30 @@ function tree(schema, { hooks, h, state } = <span class="branch-0 cbranch-no" ti
   return schema
 }
 &nbsp;
-export default defineComponent({
+export default {
+  functional: false,
   name: 'FormulateSchema',
   props: {
     schema: Formulate.defaults.components.FormulateForm.props.schema,
     hooks: hooksProp,
   },
-  setup(props, { emit }) {
-    const schemaHooks = new Hooks().setHooks(props.hooks.schema)
-    const schemaOptionsHooks = new Hooks().setHooks(props.hooks.schemaOptions).setDefault((x) =&gt; x)
-    return () =&gt; {
-      return schemaHooks.apply(createElement('div', {}, tree(props.schema, schemaOptionsHooks.apply({ hooks: props.hooks, h: createElement, state: {} }, { emit, props }))), { emit, props })
-    }
+  data: () =&gt; ({
+    schemaHooks: null,
+    schemaOptionsHooks: null,
+  }),
+  methods: {
+    emit(event, payload) {
+      this.$emit(event, payload)
+    },
   },
-})
+  beforeMount() {
+    this.schemaHooks = new Hooks().setHooks(this.hooks.schema)
+    this.schemaOptionsHooks = new Hooks().setHooks(this.hooks.schemaOptions).setDefault((x) =&gt; x)
+  },
+  render(createElement) {
+    return this.schemaHooks.apply(createElement('div', {}, tree(this.schema, this.schemaOptionsHooks.apply({ hooks: this.hooks, h: createElement, state: {} }, { emit: this.emit, props: this.$props }))), { emit: this.emit, props: this.$props })
+  },
+}
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -231,7 +258,7 @@ export default defineComponent({
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Fri Jul 10 2020 20:20:02 GMT+0200 (GMT+02:00)
+                at Tue Jul 14 2020 10:00:41 GMT+0200 (GMT+02:00)
             </div>
         </div>
         <script src="..\..\prettify.js"></script>

@@ -7,5 +7,5 @@ export default {
     format: 'cjs',
   },
   plugins: [vue({})],
-  external: ['@braid/vue-formulate', '@vue/composition-api'],
+  external: ['@braid/vue-formulate'],
 }

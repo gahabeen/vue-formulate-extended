@@ -18,8 +18,7 @@
     "test:unit": "vue-cli-service test:unit --coverage"
   },
   "peerDependencies": {
-    "@braid/vue-formulate": "2.4.2",
-    "@vue/composition-api": "^0.6.7",
+    "@braid/vue-formulate": "2.4.3",
     "imask": "^6.0.5",
     "vue": "^2.6.11"
   },
@@ -31,7 +30,6 @@
     "@vue/cli-plugin-babel": "~4.4.0",
     "@vue/cli-plugin-unit-jest": "~4.4.0",
     "@vue/cli-service": "^4.4.6",
-    "@vue/composition-api": "^0.6.7",
     "@vue/test-utils": "^1.0.3",
     "flush-promises": "^1.0.2",
     "imask": "^6.0.5",
@@ -44,5 +42,8 @@
     "sass-loader": "^8.0.2",
     "vue": "^2.6.11",
     "vue-template-compiler": "^2.6.11"
+  },
+  "dependencies": {
+    "@vue/composition-api": "0.6.7"
   }
 }
