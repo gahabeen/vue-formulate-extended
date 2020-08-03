@@ -4,6 +4,7 @@
       v-if="schema"
       :schema="schema"
       :hooks="cleanedHooks"
+      :formClass="formClass"
       @events="$emit('events', $event)"
     />
     <FormulateErrors v-if="!hasFormErrorObservers" :context="formContext" />
