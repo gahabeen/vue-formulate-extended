@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1594713641314" clover="3.2.0">
-  <project timestamp="1594713641314" name="All files">
+<coverage generated="1596192499971" clover="3.2.0">
+  <project timestamp="1596192499971" name="All files">
     <metrics statements="126" coveredstatements="113" conditionals="112" coveredconditionals="73" methods="48" coveredmethods="45" elements="286" coveredelements="231" complexity="0" loc="126" ncloc="126" packages="5" files="10" classes="10"/>
     <package name="src">
       <metrics statements="16" coveredstatements="16" conditionals="13" coveredconditionals="9" methods="2" coveredmethods="2"/>
       <file name="index.js" path="C:\Users\desse\Documents\github\projects\vue-formulate-extended\src\index.js">
         <metrics statements="16" coveredstatements="16" conditionals="13" coveredconditionals="9" methods="2" coveredmethods="2"/>
-        <line num="11" count="7" type="stmt"/>
-        <line num="12" count="7" type="stmt"/>
-        <line num="15" count="7" type="stmt"/>
-        <line num="33" count="7" type="stmt"/>
-        <line num="34" count="7" type="cond" truecount="1" falsecount="1"/>
-        <line num="35" count="7" type="stmt"/>
-        <line num="38" count="7" type="cond" truecount="1" falsecount="1"/>
-        <line num="39" count="7" type="stmt"/>
-        <line num="42" count="7" type="cond" truecount="1" falsecount="1"/>
-        <line num="43" count="7" type="stmt"/>
-        <line num="46" count="7" type="cond" truecount="2" falsecount="0"/>
+        <line num="11" count="9" type="stmt"/>
+        <line num="12" count="9" type="stmt"/>
+        <line num="15" count="9" type="stmt"/>
+        <line num="33" count="9" type="stmt"/>
+        <line num="34" count="9" type="cond" truecount="1" falsecount="1"/>
+        <line num="35" count="9" type="stmt"/>
+        <line num="38" count="9" type="cond" truecount="1" falsecount="1"/>
+        <line num="39" count="9" type="stmt"/>
+        <line num="42" count="9" type="cond" truecount="1" falsecount="1"/>
+        <line num="43" count="9" type="stmt"/>
+        <line num="46" count="9" type="cond" truecount="2" falsecount="0"/>
         <line num="47" count="1" type="stmt"/>
-        <line num="50" count="7" type="cond" truecount="2" falsecount="0"/>
+        <line num="50" count="9" type="cond" truecount="2" falsecount="0"/>
         <line num="51" count="2" type="stmt"/>
-        <line num="54" count="7" type="cond" truecount="2" falsecount="0"/>
+        <line num="54" count="9" type="cond" truecount="2" falsecount="0"/>
         <line num="55" count="1" type="stmt"/>
       </file>
     </package>
@@ -28,11 +28,11 @@
       <metrics statements="50" coveredstatements="44" conditionals="44" coveredconditionals="27" methods="18" coveredmethods="16"/>
       <file name="FormulateForm.vue" path="C:\Users\desse\Documents\github\projects\vue-formulate-extended\src\components\FormulateForm.vue">
         <metrics statements="16" coveredstatements="13" conditionals="13" coveredconditionals="7" methods="4" coveredmethods="4"/>
-        <line num="15" count="7" type="stmt"/>
-        <line num="16" count="7" type="stmt"/>
-        <line num="18" count="7" type="stmt"/>
-        <line num="19" count="7" type="stmt"/>
-        <line num="20" count="7" type="stmt"/>
+        <line num="15" count="9" type="stmt"/>
+        <line num="16" count="9" type="stmt"/>
+        <line num="18" count="9" type="stmt"/>
+        <line num="19" count="9" type="stmt"/>
+        <line num="20" count="9" type="stmt"/>
         <line num="32" count="12" type="stmt"/>
         <line num="34" count="12" type="stmt"/>
         <line num="35" count="60" type="stmt"/>
@@ -47,18 +47,18 @@
       </file>
       <file name="FormulateInput.vue" path="C:\Users\desse\Documents\github\projects\vue-formulate-extended\src\components\FormulateInput.vue">
         <metrics statements="12" coveredstatements="10" conditionals="8" coveredconditionals="5" methods="3" coveredmethods="2"/>
-        <line num="3" count="7" type="stmt"/>
-        <line num="4" count="7" type="stmt"/>
-        <line num="16" count="28" type="stmt"/>
-        <line num="17" count="28" type="cond" truecount="1" falsecount="1"/>
+        <line num="3" count="9" type="stmt"/>
+        <line num="4" count="9" type="stmt"/>
+        <line num="16" count="29" type="stmt"/>
+        <line num="17" count="29" type="cond" truecount="1" falsecount="1"/>
         <line num="18" count="0" type="stmt"/>
-        <line num="19" count="28" type="cond" truecount="1" falsecount="1"/>
+        <line num="19" count="29" type="cond" truecount="1" falsecount="1"/>
         <line num="20" count="0" type="stmt"/>
-        <line num="22" count="28" type="stmt"/>
-        <line num="25" count="28" type="cond" truecount="2" falsecount="0"/>
-        <line num="29" count="44" type="stmt"/>
-        <line num="31" count="28" type="cond" truecount="1" falsecount="1"/>
-        <line num="32" count="28" type="stmt"/>
+        <line num="22" count="29" type="stmt"/>
+        <line num="25" count="29" type="cond" truecount="2" falsecount="0"/>
+        <line num="29" count="45" type="stmt"/>
+        <line num="31" count="29" type="cond" truecount="1" falsecount="1"/>
+        <line num="32" count="29" type="stmt"/>
       </file>
       <file name="FormulateSchema.js" path="C:\Users\desse\Documents\github\projects\vue-formulate-extended\src\components\FormulateSchema.js">
         <metrics statements="22" coveredstatements="21" conditionals="23" coveredconditionals="15" methods="11" coveredmethods="10"/>
@@ -147,26 +147,26 @@
       </file>
       <file name="hooks.js" path="C:\Users\desse\Documents\github\projects\vue-formulate-extended\src\libs\hooks.js">
         <metrics statements="24" coveredstatements="22" conditionals="16" coveredconditionals="11" methods="15" coveredmethods="15"/>
-        <line num="3" count="148" type="stmt"/>
-        <line num="4" count="148" type="stmt"/>
+        <line num="3" count="149" type="stmt"/>
+        <line num="4" count="149" type="stmt"/>
         <line num="10" count="60" type="cond" truecount="1" falsecount="1"/>
         <line num="11" count="60" type="stmt"/>
         <line num="12" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="13" count="0" type="stmt"/>
         <line num="16" count="60" type="stmt"/>
-        <line num="20" count="56" type="cond" truecount="4" falsecount="0"/>
+        <line num="20" count="57" type="cond" truecount="4" falsecount="0"/>
         <line num="21" count="32" type="stmt"/>
-        <line num="23" count="56" type="stmt"/>
-        <line num="27" count="208" type="stmt"/>
-        <line num="28" count="208" type="stmt"/>
+        <line num="23" count="57" type="stmt"/>
+        <line num="27" count="209" type="stmt"/>
+        <line num="28" count="209" type="stmt"/>
         <line num="32" count="36" type="stmt"/>
         <line num="33" count="36" type="stmt"/>
-        <line num="39" count="64" type="cond" truecount="3" falsecount="0"/>
+        <line num="39" count="65" type="cond" truecount="3" falsecount="0"/>
         <line num="43" count="32" type="stmt"/>
         <line num="47" count="60" type="stmt"/>
-        <line num="51" count="92" type="stmt"/>
-        <line num="55" count="92" type="cond" truecount="2" falsecount="0"/>
-        <line num="56" count="56" type="stmt"/>
+        <line num="51" count="93" type="stmt"/>
+        <line num="55" count="93" type="cond" truecount="2" falsecount="0"/>
+        <line num="56" count="57" type="stmt"/>
         <line num="58" count="44" type="stmt"/>
         <line num="63" count="12" type="stmt"/>
         <line num="64" count="12" type="stmt"/>
