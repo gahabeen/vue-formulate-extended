@@ -45,6 +45,10 @@ export default {
   props: {
     schema: Formulate.defaults.components.FormulateForm.props.schema,
     hooks: hooksProp,
+    formClass: {
+      type: String,
+      default: null,
+    },
   },
   data: () => ({
     schemaHooks: null,
@@ -60,6 +64,6 @@ export default {
     this.schemaOptionsHooks = new Hooks().setHooks(this.hooks.schemaOptions).setDefault((x) => x)
   },
   render(createElement) {
-    return this.schemaHooks.apply(createElement('div', {}, tree(this.schema, this.schemaOptionsHooks.apply({ hooks: this.hooks, h: createElement, state: {} }, { emit: this.emit, props: this.$props }))), { emit: this.emit, props: this.$props })
+    return this.schemaHooks.apply(createElement('div', { attrs: { class: this.$props.formClass } }, tree(this.schema, this.schemaOptionsHooks.apply({ hooks: this.hooks, h: createElement, state: {} }, { emit: this.emit, props: this.$props }))), { emit: this.emit, props: this.$props })
   },
 }

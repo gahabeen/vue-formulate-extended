@@ -22,21 +22,25 @@ import FormulateSchema from "./FormulateSchema.js";
 export default {
   extends: Formulate.defaults.components.FormulateForm,
   components: {
-    FormulateSchema
+    FormulateSchema,
   },
   props: {
-    hooks: hooksProp
+    hooks: hooksProp,
+    formClass: {
+      type: String,
+      default: null,
+    },
   },
   computed: {
     cleanedHooks() {
       const _hooks = hooksProp.default();
 
-      Object.keys(_hooks).forEach(key => {
+      Object.keys(_hooks).forEach((key) => {
         _hooks[key] = new Hooks().parse(this.hooks[key]).getHooks();
       });
 
       return Formulate.merge(this.$formulate.options.hooks || {}, _hooks);
-    }
+    },
   },
   watch: {
     formulateValue: {
@@ -48,7 +52,7 @@ export default {
           const keys = Array.from(
             new Set(Object.keys(values).concat(Object.keys(this.proxy)))
           );
-          keys.forEach(field => {
+          keys.forEach((field) => {
             if (!shallowEqualObjects(values[field], this.proxy[field])) {
               this.setFieldValue(field, values[field]);
               if (
@@ -64,8 +68,8 @@ export default {
           });
         }
       },
-      deep: true
-    }
-  }
+      deep: true,
+    },
+  },
 };
 </script>
