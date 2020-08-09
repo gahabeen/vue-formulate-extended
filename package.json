@@ -1,6 +1,6 @@
 {
   "name": "vue-formulate-extended",
-  "version": "1.0.43",
+  "version": "1.0.44",
   "main": "lib/vue-formulate-extended.umd.js",
   "module": "lib/vue-formulate-extended.esm.js",
   "unpkg": "lib/vue-formulate-extended.min.js",
