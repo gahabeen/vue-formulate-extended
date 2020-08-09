@@ -1,7 +1,8 @@
 import Vue from 'vue'
 
 import VueFormulate from '@braid/vue-formulate'
-import VueFormulateExtended from '../lib/vue-formulate-extended.umd'
+// import VueFormulateExtended from '../lib/vue-formulate-extended.umd'
+import VueFormulateExtended from '../src'
 Vue.config.productionTip = false
 
 Vue.use(VueFormulate, {

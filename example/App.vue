@@ -1,9 +1,9 @@
 <template>
   <div style="display: flex; justify-items: center; align-items: center; min-height: 100vh;">
-    <Test style="width:300px;" />
-    <FormSync style="width:300px;" />
+    <!-- <Test style="width:300px;" /> -->
+    <!-- <FormSync style="width:300px;" /> -->
     <Base style="width:300px;" />
-    <MaskPage style="width:300px;" />
+    <!-- <MaskPage style="width:300px;" /> -->
   </div>
 </template>
 
