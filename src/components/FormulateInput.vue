@@ -113,9 +113,17 @@ export default {
             : [];
         defaultModelHooks.map((h) => _modelHook.addHook(h));
 
+        let updatedModel = newModel;
+
+        if (this.context.classification === "box") {
+          if (typeof newModel === "string" && newModel.length === 0) {
+            updatedModel = false;
+          }
+        }
+
         if (newModel !== oldModel) {
-          this.context.model = _modelHook.apply(newModel, {
-            oldModel,
+          this.context.model = _modelHook.apply(updatedModel, {
+            oldModel: oldModel,
             context: this.context,
           });
         }
