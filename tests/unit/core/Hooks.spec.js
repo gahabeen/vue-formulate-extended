@@ -2,9 +2,6 @@ import VueFormulateExtended from '@/index.js'
 import VueFormulate from '@braid/vue-formulate'
 import Vue from 'vue'
 
-
-
-
 Vue.use(VueFormulate, {
   plugins: [
     VueFormulateExtended({
