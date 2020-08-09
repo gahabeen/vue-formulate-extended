@@ -27,6 +27,6 @@ export default {
         forOf: false,
       },
     }),
-    // terser(),
+    terser(),
   ],
 }
