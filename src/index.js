@@ -3,13 +3,13 @@ import FormulateForm from './components/FormulateForm.vue'
 import FormulateInput from './components/FormulateInput.vue'
 
 import formEvents from './features/form-events'
-// import textMask from './features/text-mask'
+import textMask from './features/text-mask'
 import enforceNumber from './features/enforce-number'
 
 import Formulate from '@braid/vue-formulate/src/Formulate'
 
 export const components = { FormulateForm, FormulateSchema, FormulateInput }
-export const features = { formEvents, enforceNumber } // textMask - need to be removed to avoid required dependency
+export const features = { formEvents, enforceNumber, textMask } // textMask - need to be removed to avoid required dependency
 
 export default function(options = {}) {
   let extended = {
@@ -48,10 +48,11 @@ export default function(options = {}) {
     }
 
     if (extended.options.features.textMask) {
+      instance.extend(textMask)
       // lazy loaded
-      import('./features/text-mask').then((textMask) => {
-        instance.extend(textMask.default)
-      })
+      // import('./features/text-mask').then((textMask) => {
+      //   instance.extend(textMask.default)
+      // })
     }
 
     if (extended.options.features.enforceNumber) {
