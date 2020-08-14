@@ -12,7 +12,7 @@ yarn add vue-formulate-extended
 yarn add @braid/vue-formulate@2.4.3
 
 # install only if you want to use text-mask feature
-yarnd add imask
+yarn add imask
 ```
 
 ```js
