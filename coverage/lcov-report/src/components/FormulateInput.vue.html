@@ -22,16 +22,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">83.33% </span>
+                <span class="strong">81.25% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>10/12</span>
+                <span class='fraction'>13/16</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">62.5% </span>
+                <span class="strong">64.29% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>5/8</span>
+                <span class='fraction'>9/14</span>
             </div>
         
             
@@ -43,9 +43,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">83.33% </span>
+                <span class="strong">81.25% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>10/12</span>
+                <span class='fraction'>13/16</span>
             </div>
         
             
@@ -182,8 +182,14 @@
 <a name='L124'></a><a href='#L124'>124</a>
 <a name='L125'></a><a href='#L125'>125</a>
 <a name='L126'></a><a href='#L126'>126</a>
-<a name='L127'></a><a href='#L127'>127</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L127'></a><a href='#L127'>127</a>
+<a name='L128'></a><a href='#L128'>128</a>
+<a name='L129'></a><a href='#L129'>129</a>
+<a name='L130'></a><a href='#L130'>130</a>
+<a name='L131'></a><a href='#L131'>131</a>
+<a name='L132'></a><a href='#L132'>132</a>
+<a name='L133'></a><a href='#L133'>133</a>
+<a name='L134'></a><a href='#L134'>134</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -283,23 +289,31 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">29x</span>
-<span class="cline-any cline-yes">29x</span>
+<span class="cline-any cline-yes">26x</span>
+<span class="cline-any cline-yes">26x</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-yes">29x</span>
+<span class="cline-any cline-yes">26x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">29x</span>
+<span class="cline-any cline-yes">26x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">29x</span>
+<span class="cline-any cline-yes">26x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">45x</span>
+<span class="cline-any cline-yes">34x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">29x</span>
-<span class="cline-any cline-yes">29x</span>
+<span class="cline-any cline-yes">26x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">26x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">26x</span>
+<span class="cline-any cline-yes">26x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -323,7 +337,7 @@
         v-if="context.labelPosition === 'before'"
         name="label"
         v-bind="context"
-        @click="$emit('label-click')"
+        @click.prevent="$emit('label-click')"
       &gt;
         &lt;component
           :is="context.slotComponents.label"
@@ -359,7 +373,7 @@
         v-if="context.labelPosition === 'after'"
         name="label"
         v-bind="context"
-        @click="$emit('label-click')"
+        @click.prevent="$emit('label-click')"
       &gt;
         &lt;component
           :is="context.slotComponents.label"
@@ -382,8 +396,7 @@
         v-bind="context.slotProps.help"
       /&gt;
     &lt;/slot&gt;
-    &lt;slot name="errors" v-bind="context" 
-      @click="$emit('errors-click')"&gt;
+    &lt;slot name="errors" v-bind="context" @click="$emit('errors-click')"&gt;
       &lt;component
         :is="context.slotComponents.errors"
         v-if="!context.disableErrors"
@@ -424,9 +437,17 @@ export default {
             : [];
         defaultModelHooks.map((h) =&gt; _modelHook.addHook(h));
 &nbsp;
+        let updatedModel = newModel;
+&nbsp;
+        if (this.context.classification === "box") {
+<span class="branch-1 cbranch-no" title="branch not covered" ><span class="missing-if-branch" title="if path not taken" >I</span>          if (typeof newModel === "string" &amp;&amp; newModel.length === 0) {</span>
+<span class="cstat-no" title="statement not covered" >            updatedModel = false;</span>
+          }
+        }
+&nbsp;
 <span class="missing-if-branch" title="else path not taken" >E</span>        if (newModel !== oldModel) {
-          this.context.model = _modelHook.apply(newModel, {
-            oldModel,
+          this.context.model = _modelHook.apply(updatedModel, {
+            oldModel: oldModel,
             context: this.context,
           });
         }
@@ -441,7 +462,7 @@ export default {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Wed Aug 05 2020 11:00:33 GMT+0200 (GMT+02:00)
+                at Fri Aug 14 2020 18:15:30 GMT+0200 (GMT+02:00)
             </div>
         </div>
         <script src="..\..\prettify.js"></script>

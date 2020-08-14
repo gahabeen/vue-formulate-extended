@@ -22,7 +22,6 @@ export default {
             ...events.reduce((onEvents, eventName) => {
               onEvents[eventName] = function(payload) {
                 if (on[eventName]) on[eventName](payload)
-                console.log("node", node);
                 state.eventBus.emit('events', { eventName, name: node.name, type: node.type, key: node.key, payload })
               }
               return onEvents
