@@ -4,7 +4,6 @@ import { mount } from '@vue/test-utils'
 import flushPromises from 'flush-promises'
 import Vue from 'vue'
 
-
 Vue.use(VueFormulate, {
   plugins: [
     VueFormulateExtended({
@@ -47,6 +46,20 @@ describe('Component: FormulateInput', () => {
   it('should work as normal with v-model with type=checkbox on unchecked', async () => {
     const wrapper = mount({
       template: `<FormulateInput type="checkbox" v-model="formData.required"/>`,
+      data: () => ({
+        formData: {},
+      }),
+    })
+    const name = wrapper.find('input[type="checkbox"]')
+    name.setChecked()
+    name.setChecked(false)
+    await flushPromises()
+    expect(wrapper.vm.formData).toEqual({ required: false })
+  })
+
+  it(`shouldn't get registered within FormulateForm`, async () => {
+    const wrapper = mount({
+      template: `<FormulateForm v-model="formData" :schema="[{type: 'text', name: 'name'}]"><div><FormulateInput type="checkbox" v-model="formData.required" :standalone="true" :name="false"></FormulateInput></div></FormulateForm>`,
       data: () => ({
         formData: {},
       }),

@@ -87,15 +87,49 @@
 <script>
 import { Hooks } from "../libs/hooks";
 import Formulate from "@braid/vue-formulate";
+const {
+  props,
+  created, // replace
+  watch,
+  ...others
+} = Formulate.defaults.components.FormulateInput;
+
 export default {
-  extends: Formulate.defaults.components.FormulateInput,
+  ...others,
   props: {
+    ...props,
     modelHook: {
       type: [Function, Object, Array],
       default: null,
     },
+    standalone: {
+      type: Boolean,
+      default: () => false,
+    },
+  },
+
+  created() {
+    this.applyInitialValue();
+    if (
+      !this.standalone &&
+      this.formulateRegister &&
+      typeof this.formulateRegister === "function"
+    ) {
+      this.formulateRegister(this.nameOrFallback, this);
+    }
+    this.applyDefaultValue();
+    if (!this.disableErrors && typeof this.observeErrors === "function") {
+      this.observeErrors({
+        callback: this.setErrors,
+        type: "input",
+        field: this.nameOrFallback,
+      });
+    }
+    this.updateLocalAttributes(this.$attrs);
+    this.performValidation();
   },
   watch: {
+    ...watch,
     "context.model": {
       handler(newModel, oldModel) {
         const _modelHook = new Hooks();
