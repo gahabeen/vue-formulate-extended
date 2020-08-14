@@ -35,6 +35,7 @@ Vue.use(VueFormulate, {
 ## Added functionalities
 1. Fix for FormulateForm v-model (see [https://github.com/wearebraid/vue-formulate/pull/164](https://github.com/wearebraid/vue-formulate/pull/164))
 2. Hooks strategy to easily add features (see /features folder for examples)
+3. Allow standalone FormulateInput (won't register within a FormulateForm) using `<FormulateInput :standalone="true" :name="false" />
 
 (Feel free to check out how I extend the Form, Input and Schema components in /components)
 
