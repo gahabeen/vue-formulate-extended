@@ -4,7 +4,19 @@ import { mount } from '@vue/test-utils'
 import flushPromises from 'flush-promises'
 import Vue from 'vue'
 
+import TestInput from './TestInput.vue'
+Vue.component('TestInput', TestInput)
+
 Vue.use(VueFormulate, {
+  library: {
+    test: {
+      classification: 'text',
+      component: 'TestInput',
+      slotProps: {
+        component: ['custom'],
+      },
+    },
+  },
   plugins: [
     VueFormulateExtended({
       features: {
@@ -69,5 +81,12 @@ describe('Component: FormulateInput', () => {
     name.setChecked(false)
     await flushPromises()
     expect(wrapper.vm.formData).toEqual({ required: false })
+  })
+
+  it(`should pass on custom props via slotProps`, async () => {
+    const wrapper = mount({
+      template: `<FormulateInput type="test" :formulateValue="true" custom="amazing"></FormulateInput>`,
+    })
+    expect(wrapper.text()).toEqual('amazing')
   })
 })

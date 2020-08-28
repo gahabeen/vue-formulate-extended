@@ -91,6 +91,7 @@ const {
   props,
   created, // replace
   watch,
+  computed,
   ...others
 } = Formulate.defaults.components.FormulateInput;
 
@@ -127,6 +128,21 @@ export default {
     }
     this.updateLocalAttributes(this.$attrs);
     this.performValidation();
+  },
+  computed: {
+    ...computed,
+    slotProps() {
+      const fn = this.$formulate.slotProps.bind(this.$formulate);
+      return {
+        label: fn(this.type, "label", this.typeProps),
+        help: fn(this.type, "help", this.typeProps),
+        errors: fn(this.type, "errors", this.typeProps),
+        repeatable: fn(this.type, "repeatable", this.typeProps),
+        addMore: fn(this.type, "addMore", this.typeProps),
+        remove: fn(this.type, "remove", this.typeProps),
+        component: fn(this.type, "component", this.typeProps),
+      };
+    },
   },
   watch: {
     ...watch,
