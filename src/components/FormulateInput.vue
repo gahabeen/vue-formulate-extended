@@ -161,6 +161,7 @@ export default {
           this.$formulate.options.hooks && this.$formulate.options.hooks.model
             ? this.$formulate.options.hooks.model
             : [];
+
         defaultModelHooks.map((h) => _modelHook.addHook(h));
 
         let updatedModel = newModel;
@@ -171,7 +172,7 @@ export default {
           }
         }
 
-        if (newModel !== oldModel) {
+        if (newModel !== oldModel && _modelHook.hooks.length > 0) {
           this.context.model = _modelHook.apply(updatedModel, {
             oldModel: oldModel,
             context: this.context,
