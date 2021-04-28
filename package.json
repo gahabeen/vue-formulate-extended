@@ -19,12 +19,12 @@
     "test:unit:watch": "vue-cli-service test:unit --coverage --watch"
   },
   "peerDependencies": {
-    "@braid/vue-formulate": "2.4.3",
+    "@braid/vue-formulate": "^2.5.2",
     "imask": "^6.0.5",
     "vue": "^2.6.11"
   },
   "devDependencies": {
-    "@braid/vue-formulate": "2.4.3",
+    "@braid/vue-formulate": "^2.5.2",
     "@rollup/plugin-buble": "^0.21.3",
     "@rollup/plugin-commonjs": "^13.0.0",
     "@rollup/plugin-node-resolve": "^8.1.0",

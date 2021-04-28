@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import { shallowEqualObjects } from "@braid/vue-formulate/src/libs/utils.js";
+import { equals } from "@braid/vue-formulate/src/libs/utils.js";
 import Formulate from "@braid/vue-formulate";
 
 import { Hooks } from "../libs/hooks.js";
@@ -54,11 +54,11 @@ export default {
             new Set(Object.keys(values).concat(Object.keys(this.proxy)))
           );
           keys.forEach((field) => {
-            if (!shallowEqualObjects(values[field], this.proxy[field])) {
+            if (!equals(values[field], this.proxy[field])) {
               this.setFieldValue(field, values[field]);
               if (
                 this.registry.has(field) &&
-                !shallowEqualObjects(
+                !equals(
                   values[field],
                   this.registry.get(field).proxy
                 )

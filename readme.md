@@ -9,7 +9,7 @@
 yarn add vue-formulate-extended
 
 # don't forget to have the peer dependencies installed
-yarn add @braid/vue-formulate@2.4.3
+yarn add @braid/vue-formulate@2.5.2
 
 # install only if you want to use text-mask feature
 yarn add imask
@@ -43,20 +43,20 @@ Vue.use(VueFormulate, {
 ## Activable features
 
 ### Events propagation
-Events propagation from schema inputs with `events: []` in **FormulateForm** up to the top via `@events`       
-  <a href="https://codesandbox.io/s/events-propagation-b2vsf?file=/src/components/Sandbox.vue" target="_blank">Check a live example</a>  
+Events propagation from schema inputs with `events: []` in **FormulateForm** up to the top via `@events`
+  <a href="https://codesandbox.io/s/events-propagation-b2vsf?file=/src/components/Sandbox.vue" target="_blank">Check a live example</a>
   <a href="https://github.com/gahabeen/vue-formulate-extended/tree/master/test/unit/features/FormEvents.spec.js" target="_blank">Check the tests</a>
 
 
 ### Text mask
-Text mask on a **FormulateInput** with `vfe-mask` attribute (works in a **FormulateForm** schema too)  
-  <a href="https://codesandbox.io/s/text-mask-04dh5?file=/src/components/Sandbox.vue" target="_blank">Check a live example</a>   
-  <a href="https://github.com/gahabeen/vue-formulate-extended/tree/master/test/unit/features/TextMask.spec.js" target="_blank">Check the tests</a>  
+Text mask on a **FormulateInput** with `vfe-mask` attribute (works in a **FormulateForm** schema too)
+  <a href="https://codesandbox.io/s/text-mask-04dh5?file=/src/components/Sandbox.vue" target="_blank">Check a live example</a>
+  <a href="https://github.com/gahabeen/vue-formulate-extended/tree/master/test/unit/features/TextMask.spec.js" target="_blank">Check the tests</a>
 
 ### Enforce Number
-Force number value on a **FormulateInput** number type with `vfe-number` attribute (works in a **FormulateForm** schema too)  
-  <a href="https://codesandbox.io/s/enforce-number-0ctzj?file=/src/components/Sandbox.vue" target="_blank">Check a live example</a>   
-  <a href="https://github.com/gahabeen/vue-formulate-extended/tree/master/test/unit/features/EnforceNumber.spec.js" target="_blank">Check the tests</a>  
+Force number value on a **FormulateInput** number type with `vfe-number` attribute (works in a **FormulateForm** schema too)
+  <a href="https://codesandbox.io/s/enforce-number-0ctzj?file=/src/components/Sandbox.vue" target="_blank">Check a live example</a>
+  <a href="https://github.com/gahabeen/vue-formulate-extended/tree/master/test/unit/features/EnforceNumber.spec.js" target="_blank">Check the tests</a>
 
 ## Q&A / Issues
 Feel free to open an issue for any question, request or bug.
